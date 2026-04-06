@@ -1,14 +1,34 @@
 # kindai-syllabus
 
-近畿大学のシラバス検索システムをTypeScriptで扱うためのライブラリです。MCPサーバーとしても利用できます。
+近畿大学のシラバス検索システムをTypeScriptで扱うためのライブラリです。CLI・MCPサーバーとしても利用できます。
 
-## 特徴
+## CLIで使う
 
-- TypeScript完全対応（型安全な検索）
-- Bunランタイムで高速動作
-- 学部・科目名・教員名などの柔軟な検索条件
-- シラバス詳細情報の取得
-- MCP (Model Context Protocol) サーバー対応
+```bash
+bunx github:hirossan4049/kinsira search --faculty 11N
+bunx github:hirossan4049/kinsira search --faculty 11N --course "プログラミング"
+bunx github:hirossan4049/kinsira search --instructor "田中"
+bunx github:hirossan4049/kinsira detail --id 2611N00213
+bunx github:hirossan4049/kinsira faculties
+```
+
+### CLIオプション
+
+| コマンド | 説明 |
+|---|---|
+| `search` | シラバスを検索 |
+| `detail` | シラバスの詳細情報を取得 |
+| `faculties` | 学部コード一覧を表示 |
+| `mcp` | MCPサーバーを起動 |
+
+| 検索オプション | 説明 |
+|---|---|
+| `--faculty <code>` | 学部コード (例: `11N`) |
+| `--course <name>` | 科目名 (部分一致) |
+| `--instructor <name>` | 教員名 (部分一致) |
+| `--keyword <word>` | キーワード |
+| `--year <code>` | 年次コード (例: `001`=1年次) |
+| `--term <code>` | 開講期間コード (例: `009`=前期, `010`=後期) |
 
 ## MCPサーバーとして使う
 
@@ -21,7 +41,7 @@ Claude DesktopなどのMCPクライアントからシラバス検索が可能で
   "mcpServers": {
     "kindai-syllabus": {
       "command": "bunx",
-      "args": ["github:hirossan4049/kinsira"]
+      "args": ["github:hirossan4049/kinsira", "mcp"]
     }
   }
 }
@@ -29,18 +49,12 @@ Claude DesktopなどのMCPクライアントからシラバス検索が可能で
 
 ### ローカルで利用
 
-```bash
-git clone https://github.com/hirossan4049/kinsira.git
-cd kinsira
-bun install
-```
-
 ```json
 {
   "mcpServers": {
     "kindai-syllabus": {
       "command": "bun",
-      "args": ["run", "/path/to/kinsira/src/mcp.ts"]
+      "args": ["run", "/path/to/kinsira/src/cli.ts", "mcp"]
     }
   }
 }

@@ -7,7 +7,7 @@
   "types": "dist/index.d.ts",
   "type": "module",
   "bin": {
-    "kindai-syllabus-mcp": "src/mcp.ts"
+    "kindai-syllabus": "src/cli.ts"
   },
   "scripts": {
     "build": "bun build src/index.ts --outdir=dist --target=node",

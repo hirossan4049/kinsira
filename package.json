@@ -1,0 +1,27 @@
+{
+  "name": "kindai-syllabus",
+  "version": "0.1.0",
+  "description": "近畿大学シラバス検索システムのTypeScriptライブラリ",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "bun build src/index.ts --outdir=dist --target=node",
+    "test": "bun test",
+    "example": "bun run examples/search-example.ts"
+  },
+  "keywords": ["kindai", "syllabus", "近畿大学", "シラバス"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/node": "^25.5.2"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "cheerio": "^1.2.0"
+  }
+}

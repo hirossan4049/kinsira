@@ -41,7 +41,7 @@ Claude DesktopなどのMCPクライアントからシラバス検索が可能で
   "mcpServers": {
     "kindai-syllabus": {
       "command": "bunx",
-      "args": ["github:hirossan4049/kinsira", "mcp"]
+      "args": ["github:hirossan4049/kinsira/mcp"]
     }
   }
 }
@@ -54,7 +54,7 @@ Claude DesktopなどのMCPクライアントからシラバス検索が可能で
   "mcpServers": {
     "kindai-syllabus": {
       "command": "bun",
-      "args": ["run", "/path/to/kinsira/src/cli.ts", "mcp"]
+      "args": ["/path/to/kinsira/mcp"]
     }
   }
 }

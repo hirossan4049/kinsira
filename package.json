@@ -1,6 +1,6 @@
 {
   "name": "kindai-syllabus",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "近畿大学シラバス検索システムのTypeScriptライブラリ",
   "main": "dist/index.js",
   "module": "dist/index.js",

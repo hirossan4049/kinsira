@@ -1,5 +1,5 @@
 #!/usr/bin/env bun
 await import('./src/mcp.ts').catch((error) => {
-  console.error('Failed to start MCP server:', error);
+  console.error('Failed to start MCP server. Verify installation and that src/mcp.ts is available.', error);
   process.exit(1);
 });

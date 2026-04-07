@@ -22,9 +22,6 @@
     "@types/bun": "latest",
     "@types/node": "^25.5.2"
   },
-  "peerDependencies": {
-    "typescript": "^5"
-  },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",
     "cheerio": "^1.2.0"

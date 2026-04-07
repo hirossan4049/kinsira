@@ -30,6 +30,19 @@ bunx github:hirossan4049/kinsira faculties
 | `--year <code>` | 年次コード (例: `001`=1年次) |
 | `--term <code>` | 開講期間コード (例: `009`=前期, `010`=後期) |
 
+| 共通オプション | 説明 |
+|---|---|
+| `--json` | JSON形式で出力 |
+
+### JSON出力
+
+`--json` フラグを付けると、`search` と `detail` の結果をJSON形式で出力できます。
+
+```bash
+bunx github:hirossan4049/kinsira search --faculty 11N --json
+bunx github:hirossan4049/kinsira detail --id 2611N00213 --json
+```
+
 ## MCPサーバーとして使う
 
 Claude DesktopなどのMCPクライアントからシラバス検索が可能です。

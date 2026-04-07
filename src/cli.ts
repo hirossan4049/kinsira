@@ -10,7 +10,9 @@ function parseFlags(args: string[]): Record<string, string> {
   const flags: Record<string, string> = {};
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
-    if (arg.startsWith('--') && i + 1 < args.length) {
+    if (arg === '--json') {
+      flags.json = 'true';
+    } else if (arg.startsWith('--') && i + 1 < args.length) {
       flags[arg.slice(2)] = args[++i];
     }
   }
@@ -37,6 +39,9 @@ Search options:
 Detail options:
   --id <syllabusNo>      シラバス番号
 
+Global options:
+  --json                 JSON形式で出力
+
 Examples:
   kindai-syllabus search --faculty 11N
   kindai-syllabus search --faculty 11N --course "プログラミング"
@@ -58,10 +63,16 @@ async function runSearch(flags: Record<string, string>) {
   if (flags.term) params.kaikoki = [flags.term] as SearchParams['kaikoki'];
 
   const results = await client.search(params);
+
+  if (flags.json) {
+    console.log(JSON.stringify(results, null, 2));
+    return;
+  }
+
   console.log(`検索結果: ${results.length}件\n`);
 
   for (const r of results) {
-    console.log(`  ${r.kamokuMei}`);
+    console.log(`  [${r.syllabusNo}] ${r.kamokuMei}`);
     console.log(`    教員: ${r.kyoinMei} | ${r.gakubuGakka} | ${r.nenzi} | ${r.tani} | ${r.kaikoki}`);
   }
 }
@@ -74,6 +85,11 @@ async function runDetail(flags: Record<string, string>) {
 
   const client = new KindaiSyllabusClient();
   const detail = await client.getDetail(flags.id);
+
+  if (flags.json) {
+    console.log(JSON.stringify(detail, null, 2));
+    return;
+  }
 
   console.log(`科目名: ${detail.kamokuMei}`);
   console.log(`教員名: ${detail.kyoinMei}`);
